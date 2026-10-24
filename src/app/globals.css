@@ -1,0 +1,121 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* Design tokens. Light is the default; dark is applied via [data-theme="dark"]
+   on <html>, set before paint by the inline script in layout.tsx. */
+:root {
+  --bg: #f6f5f1;
+  --bg-elevated: #fbfaf7;
+  --surface: #ffffff;
+  --ink: #17160f;
+  --ink-muted: #57554c;
+  --ink-subtle: #6f6c62;
+  --line: #e3e0d7;
+  --line-strong: #cfcbbf;
+  --accent: #a4481a;
+  --accent-soft: #f3e4d8;
+  --accent-ink: #ffffff;
+  --grid: rgb(23 22 15 / 0.045);
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  --bg: #0f0f0d;
+  --bg-elevated: #151512;
+  --surface: #191915;
+  --ink: #edebe4;
+  --ink-muted: #b1aea3;
+  --ink-subtle: #8f8c82;
+  --line: #2a2924;
+  --line-strong: #3a3832;
+  --accent: #e3925c;
+  --accent-soft: #2b1d14;
+  --accent-ink: #160d06;
+  --grid: rgb(237 235 228 / 0.04);
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-elevated: var(--bg-elevated);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-subtle: var(--ink-subtle);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-ink: var(--accent-ink);
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
+  --font-display: var(--font-instrument-serif), ui-serif, Georgia, serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-feature-settings: "ss01", "cv11";
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* Fine engineering-paper grid used behind the hero. */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, var(--grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* Scroll reveal: content is visible by default; JS opts elements in. */
+.reveal-ready [data-reveal] {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.reveal-ready [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+dialog::backdrop {
+  background: rgb(10 10 8 / 0.6);
+  backdrop-filter: blur(3px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  .reveal-ready [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+}
