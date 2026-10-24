@@ -27,7 +27,7 @@ export function CopyEmail({ email, className = "" }: { email: string; className?
     <button
       type="button"
       onClick={copy}
-      className={`inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-line-strong bg-surface px-5 text-sm font-medium text-ink transition-colors hover:border-ink ${className}`}
+      className={`inline-flex min-h-11 items-center justify-center gap-2 border border-line-strong bg-surface px-5 text-sm font-medium text-ink transition-colors hover:border-ink ${className}`}
     >
       {copied ? <Check className="size-4 text-accent" aria-hidden="true" /> : <Copy className="size-4" aria-hidden="true" />}
       <span>{copied ? "Copied" : "Copy email"}</span>

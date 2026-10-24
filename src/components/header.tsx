@@ -13,7 +13,11 @@ export function Header({ items, name, initials }: { items: NavItem[]; name: stri
   const menuButton = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 8);
+      // Nothing is "active" while the hero is in view.
+      if (window.scrollY < window.innerHeight * 0.5) setActive("");
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -58,7 +62,7 @@ export function Header({ items, name, initials }: { items: NavItem[]; name: stri
     >
       <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between gap-4 px-5 sm:px-8">
         <a href="#top" className="group flex min-h-11 items-center gap-3" aria-label={`${name}, back to top`}>
-          <span className="inline-flex size-8 items-center justify-center rounded-full bg-ink font-mono text-[11px] font-semibold tracking-wider text-bg transition-colors group-hover:bg-accent group-hover:text-accent-ink">
+          <span className="inline-flex size-8 items-center justify-center rounded-full bg-ink font-mono text-[11px] font-semibold tracking-wider text-bg transition-colors group-hover:opacity-80 group-hover:text-accent-ink">
             {initials}
           </span>
           <span className="hidden text-sm font-medium tracking-tight sm:inline">{name}</span>
@@ -71,7 +75,7 @@ export function Header({ items, name, initials }: { items: NavItem[]; name: stri
                 <a
                   href={`#${item.id}`}
                   aria-current={active === item.id ? "true" : undefined}
-                  className={`inline-flex min-h-11 items-center rounded-full px-3 text-[13px] transition-colors ${
+                  className={`inline-flex min-h-11 items-center px-3 text-[13px] transition-colors ${
                     active === item.id ? "text-ink" : "text-ink-subtle hover:text-ink"
                   }`}
                 >

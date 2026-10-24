@@ -11,7 +11,7 @@ export function CertificateCard({ cert }: { cert: Certification }) {
   const portrait = cert.thumbnail.height > cert.thumbnail.width;
 
   return (
-    <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-surface transition-colors hover:border-line-strong">
+    <article className="group flex h-full flex-col overflow-hidden border border-line bg-surface transition-colors hover:border-line-strong">
       <button
         type="button"
         onClick={() => dialog.current?.showModal()}
@@ -29,7 +29,7 @@ export function CertificateCard({ cert }: { cert: Certification }) {
           loading="lazy"
           className="h-auto w-full rounded-sm shadow-[0_8px_30px_-12px_rgb(0_0_0/0.35)] transition-transform duration-500 group-hover:-translate-y-1"
         />
-        <span className="absolute right-3 bottom-3 inline-flex items-center gap-1.5 rounded-full bg-surface/90 px-3 py-1.5 text-xs font-medium text-ink opacity-0 shadow-sm backdrop-blur transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">
+        <span className="absolute right-3 bottom-3 inline-flex items-center gap-1.5 bg-surface/90 px-3 py-1.5 text-xs font-medium text-ink opacity-0 shadow-sm backdrop-blur transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">
           <Maximize2 className="size-3.5" aria-hidden="true" /> Preview
         </span>
       </button>
@@ -52,7 +52,7 @@ export function CertificateCard({ cert }: { cert: Certification }) {
             href={cert.pdf}
             target="_blank"
             rel="noopener"
-            className="inline-flex min-h-10 items-center gap-1.5 rounded-full bg-ink px-4 text-xs font-medium text-bg transition-colors hover:bg-accent hover:text-accent-ink"
+            className="inline-flex min-h-10 items-center gap-1.5 bg-ink px-4 text-xs font-medium text-bg transition-colors hover:opacity-80"
             aria-describedby={titleId}
           >
             <ExternalLink className="size-3.5" aria-hidden="true" /> View certificate
@@ -60,7 +60,7 @@ export function CertificateCard({ cert }: { cert: Certification }) {
           <a
             href={cert.pdf}
             download
-            className="inline-flex min-h-10 items-center gap-1.5 rounded-full border border-line-strong px-4 text-xs font-medium text-ink transition-colors hover:border-ink"
+            className="inline-flex min-h-10 items-center gap-1.5 border border-line-strong px-4 text-xs font-medium text-ink transition-colors hover:border-ink"
             aria-describedby={titleId}
           >
             <Download className="size-3.5" aria-hidden="true" /> Download
@@ -71,7 +71,7 @@ export function CertificateCard({ cert }: { cert: Certification }) {
       <dialog
         ref={dialog}
         aria-labelledby={`${titleId}-dlg`}
-        className="m-auto max-h-[92dvh] w-[min(960px,calc(100vw-1.5rem))] overflow-hidden rounded-2xl border border-line bg-surface p-0 text-ink"
+        className="m-auto max-h-[92dvh] w-[min(960px,calc(100vw-1.5rem))] overflow-hidden border border-line bg-surface p-0 text-ink"
         onClick={(e) => {
           if (e.target === e.currentTarget) e.currentTarget.close();
         }}
@@ -116,14 +116,14 @@ export function CertificateCard({ cert }: { cert: Certification }) {
               href={cert.pdf}
               target="_blank"
               rel="noopener"
-              className="inline-flex min-h-11 items-center gap-1.5 rounded-full bg-ink px-5 text-sm font-medium text-bg hover:bg-accent hover:text-accent-ink"
+              className="inline-flex min-h-11 items-center gap-1.5 bg-ink px-5 text-sm font-medium text-bg hover:opacity-80"
             >
               <ExternalLink className="size-4" aria-hidden="true" /> Open original PDF
             </a>
             <a
               href={cert.pdf}
               download
-              className="inline-flex min-h-11 items-center gap-1.5 rounded-full border border-line-strong px-5 text-sm font-medium hover:border-ink"
+              className="inline-flex min-h-11 items-center gap-1.5 border border-line-strong px-5 text-sm font-medium hover:border-ink"
             >
               <Download className="size-4" aria-hidden="true" /> Download
             </a>
@@ -132,7 +132,7 @@ export function CertificateCard({ cert }: { cert: Certification }) {
                 href={cert.verifyUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex min-h-11 items-center gap-1.5 rounded-full px-4 text-sm text-ink-muted hover:text-ink"
+                className="inline-flex min-h-11 items-center gap-1.5 px-4 text-sm text-ink-muted hover:text-ink"
               >
                 Verify on issuer site
               </a>

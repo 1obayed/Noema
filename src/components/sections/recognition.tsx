@@ -4,23 +4,23 @@ import { achievements } from "@/data/achievements";
 
 export function RecognitionSection() {
   return (
-    <Section id="recognition" index="05" eyebrow="Recognition" title="Achievements & recognition.">
-      <ul className="grid gap-px overflow-hidden rounded-3xl border border-line bg-line sm:grid-cols-2">
+    <Section id="recognition" label="Recognition" title="Achievements & recognition.">
+      <ul className="grid gap-px border border-line-strong/70 bg-line-strong/70 sm:grid-cols-2">
         {achievements.map((a) => {
           const Icon = a.kind === "Grant" ? HandCoins : Trophy;
           return (
             <li key={`${a.distinction}-${a.title}`} className="flex flex-col bg-surface p-6 sm:p-8" data-reveal>
               <div className="flex items-center justify-between gap-4">
-                <span className="inline-flex size-10 items-center justify-center rounded-full bg-accent-soft text-accent">
+                <span className="inline-flex size-10 items-center justify-center bg-ink text-bg">
                   <Icon className="size-[18px]" aria-hidden="true" />
                 </span>
-                <span className="font-mono text-[11px] tracking-[0.14em] text-ink-subtle uppercase">
+                <span className="text-[11px] font-medium tracking-[0.18em] text-ink-subtle uppercase">
                   {a.kind}
                   {a.year ? ` · ${a.year}` : ""}
                 </span>
               </div>
               <p className="mt-6 font-display text-3xl leading-tight tracking-tight sm:text-4xl">{a.distinction}</p>
-              <h3 className="mt-2 text-base font-medium">{a.title}</h3>
+              <h3 className="mt-2 text-base font-semibold">{a.title}</h3>
               {a.organization !== a.title ? <p className="mt-1 text-sm text-ink-subtle">{a.organization}</p> : null}
               {a.description ? <p className="mt-3 text-sm leading-relaxed text-ink-muted">{a.description}</p> : null}
               {a.evidenceUrl ? (

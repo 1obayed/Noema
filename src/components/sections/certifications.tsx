@@ -8,12 +8,12 @@ export function CertificationsSection() {
   return (
     <Section
       id="certifications"
-      index="06"
-      eyebrow="Certifications"
+      label="Certifications"
+      band
       title="Certifications & coursework."
       intro="Original certificates, viewable and downloadable as issued."
     >
-      <ul className="grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
+      <ul className="grid gap-6 sm:grid-cols-2">
         {sorted.map((cert) => (
           <li key={cert.pdf} data-reveal>
             <CertificateCard cert={cert} />

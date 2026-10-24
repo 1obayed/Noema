@@ -21,7 +21,7 @@ function GeneratedCover({ project, index }: { project: Project; index: number })
             fill="none"
             stroke="currentColor"
             strokeWidth="1"
-            className={i === 2 ? "text-accent" : "text-line-strong"}
+            className={i === 2 ? "text-ink" : "text-line-strong"}
             strokeDasharray={i % 2 ? "2 6" : undefined}
           />
         ))}
@@ -37,8 +37,7 @@ export function ProjectsSection() {
   return (
     <Section
       id="projects"
-      index="03"
-      eyebrow="Projects"
+      label="Projects"
       title="Featured projects."
       intro="Systems I'm building and researching, from smart waste infrastructure to vision for disaster-response rovers."
     >
@@ -47,7 +46,7 @@ export function ProjectsSection() {
           <li key={project.slug} data-reveal>
             <article
               aria-labelledby={`project-${project.slug}`}
-              className="group flex h-full flex-col overflow-hidden rounded-3xl border border-line bg-surface transition-colors hover:border-line-strong"
+              className="group flex h-full flex-col overflow-hidden border border-line-strong/70 bg-surface transition-colors hover:border-line-strong"
             >
               <div className="aspect-[5/3] border-b border-line">
                 {project.image ? (
@@ -65,22 +64,22 @@ export function ProjectsSection() {
               </div>
               <div className="flex flex-1 flex-col p-6 sm:p-8">
                 <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
-                  <p className="font-mono text-xs tracking-[0.1em] text-accent">{project.period}</p>
+                  <p className="text-xs font-medium tracking-[0.14em] text-ink-subtle uppercase">{project.period}</p>
                   {project.recognition ? (
-                    <p className="inline-flex items-center gap-1.5 rounded-full bg-accent-soft px-3 py-1 text-xs text-ink">
-                      <Award className="size-3.5 text-accent" aria-hidden="true" />
+                    <p className="inline-flex items-center gap-1.5 bg-ink px-3 py-1.5 text-xs text-bg">
+                      <Award className="size-3.5" aria-hidden="true" />
                       {project.recognition}
                     </p>
                   ) : null}
                 </div>
-                <h3 id={`project-${project.slug}`} className="mt-4 text-2xl font-medium tracking-tight break-words">
+                <h3 id={`project-${project.slug}`} className="mt-4 font-display text-3xl tracking-tight break-words">
                   {project.name}
                 </h3>
                 <p className="mt-1 text-sm text-ink-subtle">{project.role}</p>
                 <p className="mt-4 text-[15px] leading-relaxed text-ink-muted">{project.summary}</p>
                 <ul className="mt-4 space-y-2 text-sm leading-relaxed text-ink-muted">
                   {project.highlights.map((h) => (
-                    <li key={h} className="relative pl-5 before:absolute before:top-[0.7em] before:left-0 before:h-px before:w-2.5 before:bg-accent">
+                    <li key={h} className="relative pl-5 before:absolute before:top-[0.6em] before:left-0 before:size-1.5 before:bg-ink">
                       {h}
                     </li>
                   ))}
@@ -101,7 +100,7 @@ export function ProjectsSection() {
                         href={project.repoUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex min-h-10 items-center gap-2 rounded-full border border-line-strong px-4 text-xs font-medium hover:border-ink"
+                        className="inline-flex min-h-10 items-center gap-2 border border-line-strong px-4 text-xs font-medium hover:border-ink"
                       >
                         <GitHubIcon className="size-4" /> Source
                       </a>
@@ -111,7 +110,7 @@ export function ProjectsSection() {
                         href={project.liveUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex min-h-10 items-center gap-2 rounded-full bg-ink px-4 text-xs font-medium text-bg hover:bg-accent hover:text-accent-ink"
+                        className="inline-flex min-h-10 items-center gap-2 bg-ink px-4 text-xs font-medium text-bg hover:opacity-80"
                       >
                         <ExternalLink className="size-4" aria-hidden="true" /> Live
                       </a>
