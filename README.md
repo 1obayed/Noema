@@ -17,8 +17,8 @@ All content lives in `src/data/`. Components render whatever is in these files, 
 
 | File | What it controls |
 | --- | --- |
-| `profile.ts` | Name (and the Md / Obayed Reza / Hridoy hero split), intro, About text, email, social links, résumé path, portrait, phone visibility |
-| `experience.ts` | Experience timeline |
+| `profile.ts` | Name (and the Md / Obayed Reza / Hridoy hero split), headline, intro, About text, areas of focus, email, phone, social links and handle, résumé path, portrait |
+| `experience.ts` | Experience rows. `duration` is the large number (e.g. "3+") |
 | `projects.ts` | Project cards. `repoUrl`, `liveUrl`, `image` and `recognition` are optional and only render when set |
 | `skills.ts` | Language star ratings (1–5) and skill groups |
 | `achievements.ts` | Recognition cards. Leave `year`, `description`, `evidenceUrl` out unless verified |
@@ -27,9 +27,7 @@ All content lives in `src/data/`. Components render whatever is in these files, 
 
 ### Phone number
 
-The phone number is hidden by default. To show it, set `showPhone: true` and fill in `phone` in `src/data/profile.ts`.
-
-The downloadable résumé in `public/resume/` is a copy with the phone number removed. To publish the original, replace that file.
+The phone number is shown in the hero and contact section. To hide it, set `showPhone: false` in `src/data/profile.ts`. The downloadable résumé in `public/resume/` also contains the number; replace that file to change it.
 
 ### Adding a project image
 

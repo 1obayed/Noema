@@ -4,7 +4,7 @@ import { achievements } from "@/data/achievements";
 
 export function RecognitionSection() {
   return (
-    <Section id="recognition" label="Recognition" title="Achievements & recognition.">
+    <Section id="recognition" label="Recognition" band title="Achievements & recognition.">
       <ul className="grid gap-px border border-line-strong/70 bg-line-strong/70 sm:grid-cols-2">
         {achievements.map((a) => {
           const Icon = a.kind === "Grant" ? HandCoins : Trophy;

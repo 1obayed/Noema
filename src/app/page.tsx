@@ -20,10 +20,10 @@ const personJsonLd = {
   name: profile.name,
   url: siteUrl,
   email: `mailto:${profile.email}`,
-  jobTitle: "Electrical & Electronic Engineering Undergraduate, Researcher",
+  jobTitle: "Electrical & Electronic Engineering Student, Researcher",
   address: { "@type": "PostalAddress", addressLocality: "Dhaka", addressCountry: "BD" },
   alumniOf: education.map((e) => ({ "@type": "EducationalOrganization", name: e.institution })),
-  sameAs: [profile.links.linkedin, profile.links.github],
+  sameAs: Object.values(profile.links),
 };
 
 export default function Home() {
@@ -39,12 +39,12 @@ export default function Home() {
       <main id="main">
         <Hero />
         <About />
+        <EducationSection />
         <ExperienceSection />
         <ProjectsSection />
         <SkillsSection />
         <RecognitionSection />
         <CertificationsSection />
-        <EducationSection />
         <ContactSection />
       </main>
       <Footer />

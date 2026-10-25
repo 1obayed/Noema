@@ -16,7 +16,7 @@ export const achievements: Achievement[] = [
     kind: "Competition",
   },
   {
-    distinction: "National Round Qualifier",
+    distinction: "National Round Participant",
     title: "Hult Prize Bangladesh",
     organization: "Hult Prize Bangladesh",
     kind: "Competition",

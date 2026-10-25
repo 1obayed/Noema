@@ -4,7 +4,7 @@ import { languages, skillGroups } from "@/data/skills";
 
 export function SkillsSection() {
   return (
-    <Section id="skills" label="Skills" band title="Technical toolkit.">
+    <Section id="skills" label="Skills" title="Skills.">
       <div className="grid gap-x-16 gap-y-14 lg:grid-cols-2">
         <div data-reveal>
           <BarHeading>Programming languages</BarHeading>
@@ -26,7 +26,7 @@ export function SkillsSection() {
         {skillGroups.map((group) => (
           <div key={group.title} data-reveal>
             <BarHeading>{group.title}</BarHeading>
-            <ul className="grid gap-x-8 sm:grid-cols-2">
+            <ul className="max-w-md">
               {group.items.map((s) => (
                 <li key={s} className="flex items-center gap-3 border-b border-line-strong/60 py-3 text-[15px]">
                   <span className="size-1.5 shrink-0 bg-ink" aria-hidden="true" />

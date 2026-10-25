@@ -1,20 +1,22 @@
 import { ArrowUpRight, Mail, Phone } from "lucide-react";
 import { Section } from "../section";
 import { CopyEmail } from "../copy-email";
-import { GitHubIcon, LinkedInIcon } from "../icons";
+import { FacebookIcon, GitHubIcon, InstagramIcon, LinkedInIcon } from "../icons";
 import { profile } from "@/data/profile";
 
 export function ContactSection() {
   const channels = [
     { label: "LinkedIn", value: "in/1obayed", href: profile.links.linkedin, Icon: LinkedInIcon },
-    { label: "GitHub", value: "@1obayed", href: profile.links.github, Icon: GitHubIcon },
+    { label: "GitHub", value: `@${profile.handle}`, href: profile.links.github, Icon: GitHubIcon },
+    { label: "Instagram", value: `@${profile.handle}`, href: profile.links.instagram, Icon: InstagramIcon },
+    { label: "Facebook", value: `@${profile.handle}`, href: profile.links.facebook, Icon: FacebookIcon },
   ];
   return (
     <Section
       id="contact"
       label="Contact"
       band
-      title={<>Let&apos;s build something <em>worth deploying</em>.</>}
+      title="Let's work together."
       intro="Open to research collaborations, engineering projects, and conversations about AI, computer vision, and early-stage ventures."
     >
       <div className="grid gap-6 lg:grid-cols-12">
@@ -36,14 +38,14 @@ export function ContactSection() {
             <CopyEmail email={profile.email} />
           </div>
         </div>
-        <ul className="grid gap-6 lg:col-span-5">
+        <ul className="grid gap-4 sm:grid-cols-2 lg:col-span-5">
           {channels.map(({ label, value, href, Icon }) => (
             <li key={label} data-reveal>
               <a
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex h-full items-center justify-between gap-4 border border-line bg-surface p-6 transition-colors hover:border-ink"
+                className="group flex h-full items-center justify-between gap-3 border border-line-strong/70 bg-surface p-5 transition-colors hover:border-ink"
               >
                 <span className="flex items-center gap-4">
                   <Icon className="size-6" />
@@ -57,10 +59,10 @@ export function ContactSection() {
             </li>
           ))}
           {profile.showPhone && profile.phone ? (
-            <li data-reveal>
+            <li className="sm:col-span-2" data-reveal>
               <a
                 href={`tel:${profile.phone.replace(/\s/g, "")}`}
-                className="flex items-center gap-4 border border-line bg-surface p-6 hover:border-ink"
+                className="flex h-full items-center gap-4 border border-line-strong/70 bg-surface p-5 hover:border-ink"
               >
                 <Phone className="size-6" aria-hidden="true" />
                 <span>

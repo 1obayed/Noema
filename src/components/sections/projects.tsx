@@ -38,6 +38,7 @@ export function ProjectsSection() {
     <Section
       id="projects"
       label="Projects"
+      band
       title="Featured projects."
       intro="Systems I'm building and researching, from smart waste infrastructure to vision for disaster-response rovers."
     >

@@ -3,7 +3,7 @@ import { education } from "@/data/education";
 
 export function EducationSection() {
   return (
-    <Section id="education" label="Education" title="Education.">
+    <Section id="education" label="Education" band title="Education.">
       <ol className="grid gap-12 md:grid-cols-2">
         {education.map((e) => (
           <li key={e.institution} data-reveal>

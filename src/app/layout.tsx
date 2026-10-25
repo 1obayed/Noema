@@ -16,7 +16,7 @@ const playfair = Playfair_Display({
 });
 
 const description =
-  "Electrical & Electronic Engineering undergraduate at BRAC University, computer vision researcher at LaSSET, and co-founder of Tornetec and GreenSync.";
+  "Electrical & Electronic Engineering student at BRAC University, researching embedded AI and computer vision, and co-founder of Tornetec and GreenSync.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

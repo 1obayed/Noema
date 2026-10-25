@@ -8,38 +8,20 @@ type NavItem = { id: string; label: string };
 
 export function Header({ items, name, initials }: { items: NavItem[]; name: string; initials: string }) {
   const [open, setOpen] = useState(false);
-  const [active, setActive] = useState<string>("");
   const [scrolled, setScrolled] = useState(false);
   const menuButton = useRef<HTMLButtonElement>(null);
+  const firstLink = useRef<HTMLAnchorElement>(null);
 
   useEffect(() => {
-    const onScroll = () => {
-      setScrolled(window.scrollY > 8);
-      // Nothing is "active" while the hero is in view.
-      if (window.scrollY < window.innerHeight * 0.5) setActive("");
-    };
+    const onScroll = () => setScrolled(window.scrollY > 8);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   useEffect(() => {
-    const sections = items
-      .map((i) => document.getElementById(i.id))
-      .filter((el): el is HTMLElement => Boolean(el));
-    const io = new IntersectionObserver(
-      (entries) => {
-        const visible = entries.filter((e) => e.isIntersecting);
-        if (visible.length) setActive(visible[0].target.id);
-      },
-      { rootMargin: "-45% 0px -50% 0px" },
-    );
-    sections.forEach((s) => io.observe(s));
-    return () => io.disconnect();
-  }, [items]);
-
-  useEffect(() => {
     if (!open) return;
+    firstLink.current?.focus();
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         setOpen(false);
@@ -57,76 +39,57 @@ export function Header({ items, name, initials }: { items: NavItem[]; name: stri
   return (
     <header
       className={`fixed inset-x-0 top-0 z-40 transition-colors duration-300 ${
-        scrolled || open ? "border-b border-line bg-bg/85 backdrop-blur-md" : "border-b border-transparent"
+        scrolled && !open ? "border-b border-line bg-bg/85 backdrop-blur-md" : "border-b border-transparent"
       }`}
     >
-      <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between gap-4 px-5 sm:px-8">
-        <a href="#top" className="group flex min-h-11 items-center gap-3" aria-label={`${name}, back to top`}>
-          <span className="inline-flex size-8 items-center justify-center rounded-full bg-ink font-mono text-[11px] font-semibold tracking-wider text-bg transition-colors group-hover:opacity-80 group-hover:text-accent-ink">
-            {initials}
-          </span>
-          <span className="hidden text-sm font-medium tracking-tight sm:inline">{name}</span>
+      <div className="relative z-10 mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-5 sm:px-8">
+        <a
+          href="#top"
+          onClick={() => setOpen(false)}
+          aria-label={`${name}, home`}
+          className="inline-flex size-10 items-center justify-center bg-ink font-display text-[17px] leading-none tracking-[-0.04em] text-bg transition-opacity hover:opacity-80"
+        >
+          {initials}
         </a>
 
-        <nav aria-label="Primary" className="hidden lg:block">
-          <ul className="flex items-center gap-1">
-            {items.map((item) => (
-              <li key={item.id}>
+        <button
+          ref={menuButton}
+          type="button"
+          className="inline-flex size-11 items-center justify-center text-ink"
+          aria-expanded={open}
+          aria-controls="site-menu"
+          aria-label={open ? "Close menu" : "Open menu"}
+          onClick={() => setOpen((v) => !v)}
+        >
+          {open ? <X className="size-6" aria-hidden="true" /> : <Menu className="size-6" aria-hidden="true" />}
+        </button>
+      </div>
+
+      <div id="site-menu" hidden={!open} className="fixed inset-0 overflow-y-auto bg-bg pt-16">
+        <nav aria-label="Primary" className="mx-auto w-full max-w-6xl px-5 py-8 sm:px-8 sm:py-12">
+          <ul className="grid gap-x-16 md:grid-cols-2">
+            {items.map((item, i) => (
+              <li key={item.id} className="border-b border-line">
                 <a
+                  ref={i === 0 ? firstLink : undefined}
                   href={`#${item.id}`}
-                  aria-current={active === item.id ? "true" : undefined}
-                  className={`inline-flex min-h-11 items-center px-3 text-[13px] transition-colors ${
-                    active === item.id ? "text-ink" : "text-ink-subtle hover:text-ink"
-                  }`}
+                  onClick={() => setOpen(false)}
+                  className="group flex min-h-16 items-center justify-between font-display text-3xl tracking-tight transition-opacity hover:opacity-60 sm:text-4xl"
                 >
                   {item.label}
-                  <span
-                    aria-hidden="true"
-                    className={`ml-1.5 size-1 rounded-full bg-accent transition-opacity ${active === item.id ? "opacity-100" : "opacity-0"}`}
-                  />
+                  <span aria-hidden="true" className="text-base text-ink-subtle transition-transform group-hover:translate-x-1">
+                    →
+                  </span>
                 </a>
               </li>
             ))}
           </ul>
+          <div className="mt-10 flex items-center gap-3">
+            <ThemeToggle />
+            <span className="text-sm text-ink-subtle">Light / dark</span>
+          </div>
         </nav>
-
-        <div className="flex items-center gap-1">
-          <ThemeToggle />
-          <button
-            ref={menuButton}
-            type="button"
-            className="inline-flex size-11 items-center justify-center rounded-full text-ink lg:hidden"
-            aria-expanded={open}
-            aria-controls="mobile-nav"
-            aria-label={open ? "Close menu" : "Open menu"}
-            onClick={() => setOpen((v) => !v)}
-          >
-            {open ? <X className="size-5" aria-hidden="true" /> : <Menu className="size-5" aria-hidden="true" />}
-          </button>
-        </div>
       </div>
-
-      <nav
-        id="mobile-nav"
-        aria-label="Mobile"
-        hidden={!open}
-        className="h-[calc(100dvh-4rem)] overflow-y-auto border-t border-line bg-bg lg:hidden"
-      >
-        <ul className="mx-auto flex max-w-6xl flex-col px-5 py-4 sm:px-8">
-          {items.map((item, i) => (
-            <li key={item.id} className="border-b border-line last:border-0">
-              <a
-                href={`#${item.id}`}
-                onClick={() => setOpen(false)}
-                className="flex min-h-14 items-center justify-between font-display text-3xl tracking-tight"
-              >
-                {item.label}
-                <span className="font-mono text-xs text-ink-subtle">{String(i + 1).padStart(2, "0")}</span>
-              </a>
-            </li>
-          ))}
-        </ul>
-      </nav>
     </header>
   );
 }

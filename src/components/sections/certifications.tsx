@@ -9,7 +9,6 @@ export function CertificationsSection() {
     <Section
       id="certifications"
       label="Certifications"
-      band
       title="Certifications & coursework."
       intro="Original certificates, viewable and downloadable as issued."
     >

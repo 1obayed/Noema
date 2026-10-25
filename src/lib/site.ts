@@ -10,11 +10,11 @@ export const siteUrl = (
 
 export const navItems = [
   { id: "about", label: "About" },
+  { id: "education", label: "Education" },
   { id: "experience", label: "Experience" },
   { id: "projects", label: "Projects" },
   { id: "skills", label: "Skills" },
   { id: "recognition", label: "Recognition" },
   ...(certifications.length ? [{ id: "certifications", label: "Certifications" }] : []),
-  { id: "education", label: "Education" },
   { id: "contact", label: "Contact" },
 ];

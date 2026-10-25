@@ -3,7 +3,7 @@ import { profile } from "@/data/profile";
 
 export function About() {
   return (
-    <Section id="about" label="About" title={<>Where circuits meet <em>computer vision</em>.</>}>
+    <Section id="about" label="About" title="About me.">
       <div className="grid gap-12 lg:grid-cols-12">
         <div className="space-y-5 text-base leading-[1.85] text-ink-muted sm:text-[17px] lg:col-span-8" data-reveal>
           {profile.about.map((p) => (

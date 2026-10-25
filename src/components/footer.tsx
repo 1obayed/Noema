@@ -1,6 +1,6 @@
 import { profile } from "@/data/profile";
 import { navItems } from "@/lib/site";
-import { GitHubIcon, LinkedInIcon } from "./icons";
+import { FacebookIcon, GitHubIcon, InstagramIcon, LinkedInIcon } from "./icons";
 
 // Cached at build time; each deploy refreshes it.
 async function CopyrightYear() {
@@ -17,14 +17,20 @@ export function Footer() {
           <p className="mt-3 max-w-sm text-sm leading-relaxed text-ink-subtle">
             Electrical & Electronic Engineering · Research · AI & Computer Vision. {profile.location}.
           </p>
-          <div className="mt-6 flex gap-1">
-            <a href={profile.links.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="inline-flex size-11 items-center justify-center rounded-full text-ink-muted hover:bg-surface hover:text-ink">
-              <GitHubIcon className="size-5" />
-            </a>
-            <a href={profile.links.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="inline-flex size-11 items-center justify-center rounded-full text-ink-muted hover:bg-surface hover:text-ink">
-              <LinkedInIcon className="size-5" />
-            </a>
-          </div>
+          <ul className="mt-6 flex gap-1" aria-label="Profiles">
+            {[
+              { label: "GitHub", href: profile.links.github, Icon: GitHubIcon },
+              { label: "LinkedIn", href: profile.links.linkedin, Icon: LinkedInIcon },
+              { label: "Instagram", href: profile.links.instagram, Icon: InstagramIcon },
+              { label: "Facebook", href: profile.links.facebook, Icon: FacebookIcon },
+            ].map(({ label, href, Icon }) => (
+              <li key={label}>
+                <a href={href} target="_blank" rel="noopener noreferrer" aria-label={label} className="inline-flex size-11 items-center justify-center text-ink-muted hover:bg-surface hover:text-ink">
+                  <Icon className="size-5" />
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
         <nav aria-label="Footer" className="md:col-span-4 md:col-start-7">
           <p className="font-mono text-[11px] tracking-[0.16em] text-ink-subtle uppercase">Navigate</p>

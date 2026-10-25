@@ -16,22 +16,22 @@ export default function OpengraphImage() {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: 72,
-          background: "#f6f5f1",
-          color: "#17160f",
+          background: "#f4f4f3",
+          color: "#111111",
           backgroundImage:
             "linear-gradient(to right, rgba(23,22,15,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(23,22,15,0.05) 1px, transparent 1px)",
           backgroundSize: "40px 40px",
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: 16, fontSize: 24, color: "#57554c" }}>
-          <div style={{ width: 14, height: 14, borderRadius: 7, background: "#a4481a" }} />
+        <div style={{ display: "flex", alignItems: "center", gap: 16, fontSize: 24, color: "#444444" }}>
+          <div style={{ width: 14, height: 14, borderRadius: 7, background: "#111111" }} />
           {profile.identity.slice(0, 2).join(" · ")}
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div style={{ fontSize: 88, lineHeight: 1.02, letterSpacing: -2, fontWeight: 600 }}>{profile.name}</div>
-          <div style={{ marginTop: 24, fontSize: 36, color: "#a4481a" }}>Engineering ideas into real-world impact.</div>
+          <div style={{ marginTop: 24, fontSize: 34, color: "#444444" }}>{profile.headline}</div>
         </div>
-        <div style={{ display: "flex", fontSize: 22, color: "#57554c" }}>
+        <div style={{ display: "flex", fontSize: 22, color: "#444444" }}>
           BRAC University · LaSSET · Tornetec · GreenSync
         </div>
       </div>

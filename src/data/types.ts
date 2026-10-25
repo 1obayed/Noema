@@ -4,6 +4,8 @@ export type Experience = {
   organization: string;
   role: string;
   period: string;
+  /** Years in the role, shown large (e.g. "3+"). Counted from the years in period. */
+  duration?: string;
   location?: string;
   kind: "Industry" | "Research" | "Venture";
   points: string[];
