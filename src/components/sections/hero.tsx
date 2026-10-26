@@ -86,7 +86,7 @@ export function Hero() {
       </div>
 
       {/* Grey band: headline and focus, with the portrait flush to the right edge. */}
-      <div className="relative overflow-hidden bg-band">
+      <div className="relative overflow-hidden bg-band lg:min-h-[min(42.2vw,37.75rem)]">
         <div className="mx-auto grid w-full max-w-6xl px-5 sm:px-8 lg:grid-cols-12">
           <div className="py-12 sm:py-16 lg:col-span-7 lg:py-24">
             <p className="font-display text-3xl leading-tight text-balance sm:text-[2.6rem]">{profile.headline}</p>
@@ -105,7 +105,7 @@ export function Hero() {
             </div>
           </div>
         </div>
-        <figure className="mx-auto w-full max-w-md overflow-hidden lg:absolute lg:inset-y-0 lg:right-0 lg:mx-0 lg:w-[38%] lg:max-w-[34rem] lg:overflow-visible">
+        <figure className="mx-auto w-full max-w-md lg:absolute lg:right-0 lg:bottom-0 lg:mx-0 lg:w-[38%] lg:max-w-[34rem]">
           <Image
             src={profile.portrait.src}
             alt={profile.portrait.alt}
@@ -113,7 +113,7 @@ export function Hero() {
             height={profile.portrait.height}
             priority
             sizes="(min-width: 1024px) 38vw, 448px"
-            className="aspect-[4/5] h-auto w-full translate-x-[8%] object-cover object-top lg:aspect-auto lg:h-full lg:translate-x-[10%]"
+            className="h-auto w-full"
           />
         </figure>
       </div>

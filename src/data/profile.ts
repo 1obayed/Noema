@@ -3,10 +3,10 @@ export const profile = {
   /** Hero treatment: small faded prefix/suffix around the emphasized middle names. */
   nameParts: { prefix: "Md", main: "Obayed Reza", suffix: "Hridoy" },
   portrait: {
-    src: "/images/portrait.webp",
+    src: "/images/portrait.png",
     alt: "Portrait of Md Obayed Reza Hridoy",
-    width: 960,
-    height: 1199,
+    width: 2564,
+    height: 2843,
   },
   shortName: "Obayed",
   initials: "OR",
