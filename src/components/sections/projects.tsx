@@ -15,7 +15,7 @@ function GeneratedCover({ project, index }: { project: Project; index: number })
         {Array.from({ length: 5 }, (_, i) => (
           <circle
             key={i}
-            cx={index % 2 ? 300 : 100}
+            cx={300}
             cy={120}
             r={30 + i * 34 + (seed % 9)}
             fill="none"

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { ArrowDownRight, FileDown } from "lucide-react";
 import { ButtonLink } from "../button";
-import { FacebookIcon, InstagramIcon } from "../icons";
+import { FacebookIcon, GitHubIcon, InstagramIcon, LinkedInIcon } from "../icons";
 import { profile } from "@/data/profile";
 
 const contact = [
@@ -20,12 +20,16 @@ export function Hero() {
       {/* Name + contact, as on the printed résumé header. */}
       <div className="mx-auto grid w-full max-w-6xl gap-10 px-5 pb-12 sm:px-8 sm:pb-16 lg:grid-cols-12 lg:items-end">
         <h1 id="hero-title" className="flex flex-col lg:col-span-8">
-          <span className="mb-3 font-display text-[clamp(1.5rem,4vw,2.5rem)] leading-none text-ink-subtle/70 italic">
-            {profile.nameParts.prefix}
-          </span>
           <span className="font-display text-[clamp(3.5rem,13vw,9rem)] leading-[0.92] font-normal tracking-[-0.02em]">
-            {profile.nameParts.main.split(" ").map((w) => (
-              <span key={w} className="block">
+            {profile.nameParts.main.split(" ").map((w, i) => (
+              <span key={w} className="relative block">
+                {i === 0 ? (
+                  // "Md" sits small and faded right before the "O". On wide screens it hangs in the
+                  // margin so "Obayed" and "Reza" stay left-aligned; on narrow screens it sits inline.
+                  <span className="mr-[0.12em] inline-block align-top text-[clamp(1.5rem,4vw,2.5rem)] leading-none tracking-normal text-ink-subtle/70 italic sm:mt-[0.1em] xl:absolute xl:top-[0.1em] xl:right-full xl:mt-0 xl:mr-[0.18em]">
+                    {profile.nameParts.prefix}
+                  </span>
+                ) : null}
                 {w}
               </span>
             ))}
@@ -35,7 +39,7 @@ export function Hero() {
           </span>
         </h1>
 
-        <div className="lg:col-span-4 lg:pb-3">
+        <div className="lg:col-span-4 lg:justify-self-end lg:pb-3">
           <p className="text-sm font-semibold tracking-[0.2em] uppercase">Contact</p>
           <dl className="mt-4 space-y-1.5 text-[13px] text-ink-muted">
             {contact.map((row) => (
@@ -58,41 +62,36 @@ export function Hero() {
               </div>
             ))}
           </dl>
-          <div className="mt-4 flex items-center gap-1">
-            <a
-              href={profile.links.instagram}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`Instagram @${profile.handle}`}
-              className="-ml-2.5 inline-flex size-11 items-center justify-center text-ink hover:opacity-70"
-            >
-              <InstagramIcon className="size-[18px]" />
-            </a>
-            <a
-              href={profile.links.facebook}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`Facebook @${profile.handle}`}
-              className="inline-flex size-11 items-center justify-center text-ink hover:opacity-70"
-            >
-              <FacebookIcon className="size-[18px]" />
-            </a>
-            <span className="text-[13px] font-medium" aria-hidden="true">
-              @{profile.handle}
-            </span>
-          </div>
+          <ul className="mt-4 -ml-2.5 flex items-center" aria-label="Profiles">
+            {[
+              { label: "GitHub", href: profile.links.github, Icon: GitHubIcon },
+              { label: "LinkedIn", href: profile.links.linkedin, Icon: LinkedInIcon },
+              { label: "Instagram", href: profile.links.instagram, Icon: InstagramIcon },
+              { label: "Facebook", href: profile.links.facebook, Icon: FacebookIcon },
+            ].map(({ label, href, Icon }) => (
+              <li key={label}>
+                <a
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="inline-flex size-11 items-center justify-center text-ink hover:opacity-70"
+                >
+                  <Icon className="size-[18px]" />
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
 
-      {/* Grey band: introduction with the portrait flush right. */}
-      <div className="bg-band">
-        <div className="mx-auto grid w-full max-w-6xl px-5 sm:px-8 lg:grid-cols-12 lg:items-center">
-          <div className="order-2 py-12 sm:py-16 lg:order-1 lg:col-span-8 lg:pr-14">
-            <p className="font-display text-3xl leading-tight text-balance sm:text-4xl">{profile.headline}</p>
-            <p className="mt-5 text-xs font-medium tracking-[0.16em] text-ink-subtle uppercase leading-relaxed">
-              {profile.identity.join("  ·  ")}
-            </p>
-            <p className="mt-6 max-w-2xl text-base leading-[1.8] text-ink-muted sm:text-[17px]">{profile.intro}</p>
+      {/* Grey band: headline and focus, with the portrait flush to the right edge. */}
+      <div className="relative overflow-hidden bg-band">
+        <div className="mx-auto grid w-full max-w-6xl px-5 sm:px-8 lg:grid-cols-12">
+          <div className="py-12 sm:py-16 lg:col-span-7 lg:py-24">
+            <p className="font-display text-3xl leading-tight text-balance sm:text-[2.6rem]">{profile.headline}</p>
+            <p className="mt-6 text-[13px] font-medium tracking-[0.06em] text-ink">{profile.identity.join("  ·  ")}</p>
+            <p className="mt-2 text-[13px] tracking-[0.06em] text-ink-subtle">{profile.focusLine.join("  ·  ")}</p>
             <div className="mt-9 flex flex-wrap gap-3">
               <ButtonLink href="#projects">
                 View projects <ArrowDownRight className="size-4" aria-hidden="true" />
@@ -105,18 +104,18 @@ export function Hero() {
               </ButtonLink>
             </div>
           </div>
-          <figure className="order-1 flex items-center justify-center pt-12 sm:pt-16 lg:order-2 lg:col-span-4 lg:py-16 lg:pr-8">
-            <Image
-              src={profile.portrait.src}
-              alt={profile.portrait.alt}
-              width={profile.portrait.width}
-              height={profile.portrait.height}
-              priority
-              sizes="(min-width: 1024px) 340px, 320px"
-              className="aspect-[4/5] h-auto w-full max-w-[20rem] object-cover lg:max-w-[21rem]"
-            />
-          </figure>
         </div>
+        <figure className="mx-auto w-full max-w-md lg:absolute lg:inset-y-0 lg:right-0 lg:mx-0 lg:w-[38%] lg:max-w-[34rem]">
+          <Image
+            src={profile.portrait.src}
+            alt={profile.portrait.alt}
+            width={profile.portrait.width}
+            height={profile.portrait.height}
+            priority
+            sizes="(min-width: 1024px) 38vw, 448px"
+            className="aspect-[4/5] h-auto w-full object-cover object-top lg:aspect-auto lg:h-full"
+          />
+        </figure>
       </div>
     </section>
   );

@@ -19,6 +19,8 @@ export const achievements: Achievement[] = [
     distinction: "National Round Participant",
     title: "Hult Prize Bangladesh",
     organization: "Hult Prize Bangladesh",
+    year: "2026",
+    evidenceUrl: "/certifications/hult-prize-2026-bangladesh-national-competition.pdf",
     kind: "Competition",
   },
   {

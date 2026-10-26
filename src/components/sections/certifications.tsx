@@ -1,5 +1,5 @@
 import { Section } from "../section";
-import { CertificateCard } from "../certificate-card";
+import { CertificateList } from "../certificate-list";
 import { certifications } from "@/data/certifications";
 
 export function CertificationsSection() {
@@ -10,15 +10,9 @@ export function CertificationsSection() {
       id="certifications"
       label="Certifications"
       title="Certifications & coursework."
-      intro="Original certificates, viewable and downloadable as issued."
+      intro="Original certificates, grouped by year. Preview any of them, or open the PDF as issued."
     >
-      <ul className="grid gap-6 sm:grid-cols-2">
-        {sorted.map((cert) => (
-          <li key={cert.pdf} data-reveal>
-            <CertificateCard cert={cert} />
-          </li>
-        ))}
-      </ul>
+      <CertificateList certs={sorted} />
     </Section>
   );
 }

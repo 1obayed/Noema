@@ -8,6 +8,16 @@ import type { Certification } from "./types";
  */
 export const certifications: Certification[] = [
   {
+    title: "Hult Prize 2026 Bangladesh National Competition",
+    issuer: "Hult Prize Foundation",
+    issued: "2026",
+    issuedISO: "2026",
+    description: "Recognized as a member of a competing startup at the national competition.",
+    pdf: "/certifications/hult-prize-2026-bangladesh-national-competition.pdf",
+    thumbnail: { src: "/certifications/thumbs/hult-prize-2026-bangladesh-national-competition.webp", width: 900, height: 634 },
+    pages: 1,
+  },
+  {
     title: "Introduction to Cybersecurity",
     issuer: "Cisco Networking Academy",
     issued: "July 6, 2024",

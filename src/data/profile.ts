@@ -10,15 +10,9 @@ export const profile = {
   },
   shortName: "Obayed",
   initials: "OR",
-  identity: [
-    "Electrical & Electronic Engineering Student",
-    "Researcher",
-    "Technology Entrepreneur",
-    "AI & Computer Vision",
-  ],
-  headline: "Learning to build intelligent systems, from circuits to code.",
-  intro:
-    "I'm studying Electrical and Electronic Engineering at BRAC University. My research interests are embedded systems and embedded AI: TinyML, computer vision and CNN-based detection running on small, low-power hardware.",
+  identity: ["Electrical & Electronic Engineering Student", "Undergraduate Researcher", "Tech Entrepreneur"],
+  focusLine: ["Embedded Systems & Firmware", "Embedded AI & TinyML", "Deep Learning & Computer Vision"],
+  headline: "Building intelligent systems, from circuits to code.",
   location: "Dhaka, Bangladesh",
   email: "1obayedreza@gmail.com",
   /** Set showPhone to false to hide the number everywhere on the site. */
@@ -35,9 +29,10 @@ export const profile = {
   /** Downloadable résumé. Replace the file to update it. */
   resume: "/resume/Md-Obayed-Reza-Hridoy-Resume.pdf",
   about: [
-    "I'm an Electrical and Electronic Engineering student at BRAC University. I'm most interested in what happens when intelligence moves onto the device itself: embedded systems, embedded AI and TinyML, where models have to fit into small, low-power hardware.",
-    "As an undergraduate researcher at LaSSET, I work on computer vision and image-based detection using deep learning and CNN-based approaches. With BRACU Alter, I co-lead the AI & Vision sub team, training detection models for a rover that runs on embedded vision hardware.",
-    "Outside the lab, I co-founded Tornetec, where I lead research, strategy and team management, and GreenSync, a smart waste management system that received grant support through the University Innovation Hub Program and the Hult Prize.",
+    "I'm an Electrical and Electronic Engineering undergraduate at BRAC University, also pursuing an associate degree in Computer Science at the University of the People.",
+    "My main interests lie in embedded systems, firmware development, embedded AI, and TinyML. I'm particularly interested in bringing deep learning and computer vision to resource-constrained hardware, where making a model work efficiently is just as important as making it accurate.",
+    "Previously, I worked as an undergraduate researcher at LaSSET, focusing on computer vision and image-based detection using deep learning and CNN-based approaches. At BRACU Alter, I co-lead the AI & Vision sub-team, working on detection models for a rover's embedded vision system.",
+    "I'm also a co-founder of Tornetec, a tech company focused on human-centric AI research and product development. Through Tornetec, I aim to develop practical AI-powered products that can make a meaningful difference in everyday life. I also co-founded GreenSync, a smart waste management initiative that received grant support through the University Innovation Hub Program and the Hult Prize.",
   ],
   focus: [
     "Embedded AI",

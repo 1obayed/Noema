@@ -8,9 +8,9 @@ export const education: Education[] = [
     location: "Dhaka, Bangladesh",
   },
   {
-    institution: "BIAM Model School & College",
-    credential: "Higher Secondary Certificate in Science",
-    period: "2020 – 2023",
-    location: "Dhaka, Bangladesh",
+    institution: "University of the People",
+    credential: "Associate Degree in Computer Science",
+    period: "2026 – Present",
+    location: "Online",
   },
 ];

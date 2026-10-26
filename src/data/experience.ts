@@ -29,7 +29,7 @@ export const experience: Experience[] = [
     organization: "Zyphrst",
     role: "Founder & Manager",
     period: "2022 – 2024",
-    duration: "2",
+    duration: "2+",
     kind: "Venture",
     points: [
       "Ran an authorized NFT selling studio on the Rarible Marketplace.",
