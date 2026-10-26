@@ -15,7 +15,7 @@ export function Footer() {
         <div className="md:col-span-5">
           <p className="font-display text-3xl tracking-tight">{profile.name}</p>
           <p className="mt-3 max-w-sm text-sm leading-relaxed text-ink-subtle">
-            Electrical & Electronic Engineering · Research · AI & Computer Vision. {profile.location}.
+            {profile.identity.join(" · ")}
           </p>
           <ul className="mt-6 flex gap-1" aria-label="Profiles">
             {[
