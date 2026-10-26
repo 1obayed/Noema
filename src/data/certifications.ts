@@ -18,16 +18,6 @@ export const certifications: Certification[] = [
     pages: 1,
   },
   {
-    title: "Introduction to Cybersecurity",
-    issuer: "Cisco Networking Academy",
-    issued: "July 6, 2024",
-    issuedISO: "2024-07-06",
-    description: "Certificate of Course Completion — student-level credential.",
-    pdf: "/certifications/cisco-introduction-to-cybersecurity.pdf",
-    thumbnail: { src: "/certifications/thumbs/cisco-introduction-to-cybersecurity.webp", width: 900, height: 695 },
-    pages: 1,
-  },
-  {
     title: "Advancing Sustainable Development in Practice",
     issuer: "UNITAR",
     via: "United Nations Institute for Training and Research, with UNDP–UNEP Poverty-Environment Action",
