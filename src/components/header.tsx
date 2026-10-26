@@ -52,17 +52,20 @@ export function Header({ items, name, initials }: { items: NavItem[]; name: stri
           {initials}
         </a>
 
-        <button
-          ref={menuButton}
-          type="button"
-          className="inline-flex size-11 items-center justify-center text-ink"
-          aria-expanded={open}
-          aria-controls="site-menu"
-          aria-label={open ? "Close menu" : "Open menu"}
-          onClick={() => setOpen((v) => !v)}
-        >
-          {open ? <X className="size-6" aria-hidden="true" /> : <Menu className="size-6" aria-hidden="true" />}
-        </button>
+        <div className="flex items-center gap-1">
+          <ThemeToggle />
+          <button
+            ref={menuButton}
+            type="button"
+            className="inline-flex size-11 items-center justify-center text-ink"
+            aria-expanded={open}
+            aria-controls="site-menu"
+            aria-label={open ? "Close menu" : "Open menu"}
+            onClick={() => setOpen((v) => !v)}
+          >
+            {open ? <X className="size-6" aria-hidden="true" /> : <Menu className="size-6" aria-hidden="true" />}
+          </button>
+        </div>
       </div>
 
       <div id="site-menu" hidden={!open} className="fixed inset-0 overflow-y-auto bg-bg pt-16">
@@ -84,10 +87,6 @@ export function Header({ items, name, initials }: { items: NavItem[]; name: stri
               </li>
             ))}
           </ul>
-          <div className="mt-10 flex items-center gap-3">
-            <ThemeToggle />
-            <span className="text-sm text-ink-subtle">Light / dark</span>
-          </div>
         </nav>
       </div>
     </header>
