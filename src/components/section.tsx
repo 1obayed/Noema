@@ -17,7 +17,7 @@ export function Section({ id, label, title, intro, band = false, children }: Pro
       aria-labelledby={`${id}-title`}
       className={`py-20 sm:py-24 ${band ? "bg-band" : ""}`}
     >
-      <div className="mx-auto grid w-full max-w-6xl gap-8 px-5 sm:px-8 md:grid-cols-[2.25rem_1fr] md:gap-12">
+      <div className="mx-auto grid w-full max-w-7xl gap-8 px-5 sm:px-8 md:grid-cols-[2.25rem_1fr] md:gap-12">
         <div className="md:pt-1">
           <h2 id={`${id}-title`} className="md:sticky md:top-24">
             <span className="label-bar label-bar--vertical">{label}</span>

@@ -11,7 +11,7 @@ async function CopyrightYear() {
 export function Footer() {
   return (
     <footer className="border-t border-line">
-      <div className="mx-auto grid w-full max-w-6xl gap-10 px-5 py-14 sm:px-8 md:grid-cols-12">
+      <div className="mx-auto grid w-full max-w-7xl gap-10 px-5 py-14 sm:px-8 md:grid-cols-12">
         <div className="md:col-span-5">
           <p className="font-display text-3xl tracking-tight">{profile.name}</p>
           <p className="mt-3 max-w-sm text-sm leading-relaxed text-ink-subtle">
@@ -57,7 +57,7 @@ export function Footer() {
         </div>
       </div>
       <div className="border-t border-line">
-        <div className="mx-auto flex w-full max-w-6xl flex-wrap items-center justify-between gap-4 px-5 py-6 text-xs text-ink-subtle sm:px-8">
+        <div className="mx-auto flex w-full max-w-7xl flex-wrap items-center justify-between gap-4 px-5 py-6 text-xs text-ink-subtle sm:px-8">
           <p>© <CopyrightYear /> {profile.name}</p>
           <a href="#top" className="inline-flex min-h-10 items-center hover:text-ink">Back to top ↑</a>
         </div>

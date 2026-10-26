@@ -42,7 +42,7 @@ export function Header({ items, name, initials }: { items: NavItem[]; name: stri
         scrolled && !open ? "border-b border-line bg-bg/85 backdrop-blur-md" : "border-b border-transparent"
       }`}
     >
-      <div className="relative z-10 mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-5 sm:px-8">
+      <div className="relative z-10 mx-auto flex h-16 w-full max-w-7xl items-center justify-between px-5 sm:px-8">
         <a
           href="#top"
           onClick={() => setOpen(false)}
@@ -66,7 +66,7 @@ export function Header({ items, name, initials }: { items: NavItem[]; name: stri
       </div>
 
       <div id="site-menu" hidden={!open} className="fixed inset-0 overflow-y-auto bg-bg pt-16">
-        <nav aria-label="Primary" className="mx-auto w-full max-w-6xl px-5 py-8 sm:px-8 sm:py-12">
+        <nav aria-label="Primary" className="mx-auto w-full max-w-7xl px-5 py-8 sm:px-8 sm:py-12">
           <ul className="grid gap-x-16 md:grid-cols-2">
             {items.map((item, i) => (
               <li key={item.id} className="border-b border-line">

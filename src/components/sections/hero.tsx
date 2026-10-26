@@ -18,15 +18,14 @@ export function Hero() {
   return (
     <section id="top" aria-labelledby="hero-title" className="pt-24 sm:pt-28">
       {/* Name + contact, as on the printed résumé header. */}
-      <div className="mx-auto grid w-full max-w-6xl gap-10 px-5 pb-12 sm:px-8 sm:pb-16 lg:grid-cols-12 lg:items-end">
+      <div className="mx-auto grid w-full max-w-7xl gap-10 px-5 pb-12 sm:px-8 sm:pb-16 lg:grid-cols-12 lg:items-end">
         <h1 id="hero-title" className="flex flex-col lg:col-span-8">
           <span className="font-display text-[clamp(3.5rem,13vw,9rem)] leading-[0.92] font-normal tracking-[-0.02em]">
             {profile.nameParts.main.split(" ").map((w, i) => (
               <span key={w} className="relative block">
                 {i === 0 ? (
-                  // "Md" sits small and faded right before the "O". On wide screens it hangs in the
-                  // margin so "Obayed" and "Reza" stay left-aligned; on narrow screens it sits inline.
-                  <span className="mr-[0.12em] inline-block align-top text-[clamp(1.5rem,4vw,2.5rem)] leading-none tracking-normal text-ink-subtle/70 italic sm:mt-[0.1em] xl:absolute xl:top-[0.1em] xl:right-full xl:mt-0 xl:mr-[0.18em]">
+                  // "Md" sits small and faded right before the "O", at every screen size.
+                  <span className="mt-[0.1em] mr-[0.12em] inline-block align-top text-[clamp(1.5rem,4vw,2.5rem)] leading-none tracking-normal text-ink-subtle/70 italic">
                     {profile.nameParts.prefix}
                   </span>
                 ) : null}
@@ -85,10 +84,10 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Grey band: headline and focus, with the portrait flush to the right edge. */}
-      <div className="relative overflow-hidden bg-band lg:min-h-[min(42.2vw,37.75rem)]">
-        <div className="mx-auto grid w-full max-w-6xl px-5 sm:px-8 lg:grid-cols-12">
-          <div className="py-12 sm:py-16 lg:col-span-7 lg:py-24">
+      {/* Grey band: headline and focus, with the portrait aligned to the content's right edge. */}
+      <div className="bg-band">
+        <div className="mx-auto grid w-full max-w-7xl gap-x-12 px-5 sm:px-8 lg:grid-cols-12">
+          <div className="py-12 sm:py-16 lg:col-span-7 lg:self-center lg:py-24">
             <p className="font-display text-3xl leading-tight text-balance sm:text-[2.6rem]">{profile.headline}</p>
             <p className="mt-6 text-[13px] font-medium tracking-[0.06em] text-ink">{profile.identity.join("  ·  ")}</p>
             <p className="mt-2 text-[13px] tracking-[0.06em] text-ink-subtle">{profile.focusLine.join("  ·  ")}</p>
@@ -104,18 +103,18 @@ export function Hero() {
               </ButtonLink>
             </div>
           </div>
+          <figure className="mx-auto w-full max-w-md self-end lg:col-span-5 lg:mx-0 lg:max-w-none lg:pt-16">
+            <Image
+              src={profile.portrait.src}
+              alt={profile.portrait.alt}
+              width={profile.portrait.width}
+              height={profile.portrait.height}
+              priority
+              sizes="(min-width: 1024px) 40vw, 448px"
+              className="h-auto w-full"
+            />
+          </figure>
         </div>
-        <figure className="mx-auto w-full max-w-md lg:absolute lg:right-0 lg:bottom-0 lg:mx-0 lg:w-[38%] lg:max-w-[34rem]">
-          <Image
-            src={profile.portrait.src}
-            alt={profile.portrait.alt}
-            width={profile.portrait.width}
-            height={profile.portrait.height}
-            priority
-            sizes="(min-width: 1024px) 38vw, 448px"
-            className="h-auto w-full"
-          />
-        </figure>
       </div>
     </section>
   );
