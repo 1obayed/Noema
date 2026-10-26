@@ -9,8 +9,8 @@ export function CertificationsSection() {
     <Section
       id="certifications"
       label="Certifications"
-      title="Certifications & coursework."
-      intro="Original certificates, grouped by year. Preview any of them, or open the PDF as issued."
+      title="Certificates."
+      intro="Newest first. Tap a certificate to preview it, or open the original PDF."
     >
       <CertificateList certs={sorted} />
     </Section>

@@ -1,109 +1,120 @@
 "use client";
 
-import { ChevronDown, Download, ExternalLink, Maximize2, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, Download, ExternalLink, Maximize2, X } from "lucide-react";
 import Image from "next/image";
 import { useRef, useState } from "react";
 import type { Certification } from "@/data/types";
 
-/** Rows shown before "Show all". Keeps the section short as the list grows. */
-const INITIAL = 6;
-
 export function CertificateList({ certs }: { certs: Certification[] }) {
-  const [expanded, setExpanded] = useState(false);
   const [active, setActive] = useState<Certification | null>(null);
   const dialog = useRef<HTMLDialogElement>(null);
-
-  const visible = expanded ? certs : certs.slice(0, INITIAL);
-  const years = Array.from(new Set(visible.map((c) => c.issuedISO?.slice(0, 4) ?? "Other")));
 
   const open = (cert: Certification) => {
     setActive(cert);
     dialog.current?.showModal();
   };
 
+  const track = useRef<HTMLUListElement>(null);
+  const [index, setIndex] = useState(0);
+
+  const step = (dir: 1 | -1) => {
+    const el = track.current;
+    const card = el?.querySelector("li");
+    if (!el || !card) return;
+    el.scrollBy({ left: dir * (card.getBoundingClientRect().width + 24), behavior: "smooth" });
+  };
+
+  const onScroll = () => {
+    const el = track.current;
+    const card = el?.querySelector("li");
+    if (!el || !card) return;
+    setIndex(Math.round(el.scrollLeft / (card.getBoundingClientRect().width + 24)));
+  };
+
   return (
     <div>
-      <p className="mb-8 text-sm text-ink-subtle">
-        {certs.length} certificates · newest first
-      </p>
+      <div className="mb-6 flex items-center justify-between gap-4">
+        <p className="text-sm text-ink-subtle tabular-nums" aria-live="polite">
+          <span className="font-medium text-ink">{String(Math.min(index + 1, certs.length)).padStart(2, "0")}</span> /{" "}
+          {String(certs.length).padStart(2, "0")}
+        </p>
+        <div className="flex gap-2">
+          <button
+            type="button"
+            onClick={() => step(-1)}
+            aria-label="Previous certificates"
+            disabled={index === 0}
+            className="inline-flex size-11 items-center justify-center border border-ink transition-colors hover:bg-ink hover:text-bg disabled:pointer-events-none disabled:opacity-30"
+          >
+            <ChevronLeft className="size-5" aria-hidden="true" />
+          </button>
+          <button
+            type="button"
+            onClick={() => step(1)}
+            aria-label="Next certificates"
+            className="inline-flex size-11 items-center justify-center border border-ink transition-colors hover:bg-ink hover:text-bg"
+          >
+            <ChevronRight className="size-5" aria-hidden="true" />
+          </button>
+        </div>
+      </div>
 
-      <ol className="divide-y divide-line-strong/60 border-y border-line-strong/60">
-        {years.map((year) => (
-          <li key={year} className="grid gap-4 py-8 sm:grid-cols-[7rem_1fr] sm:gap-10">
-            <p className="text-4xl font-light tracking-tight sm:text-5xl">{year}</p>
-            <ul className="divide-y divide-line">
-              {visible
-                .filter((c) => (c.issuedISO?.slice(0, 4) ?? "Other") === year)
-                .map((cert) => (
-                  <li key={cert.pdf} className="grid grid-cols-[5rem_1fr] items-start gap-4 py-4 first:pt-0 last:pb-0 sm:grid-cols-[6.5rem_1fr_auto] sm:items-center sm:gap-6">
-                    <button
-                      type="button"
-                      onClick={() => open(cert)}
-                      aria-label={`Preview certificate: ${cert.title}`}
-                      className="group relative block overflow-hidden border border-line bg-surface"
-                    >
-                      <Image
-                        src={cert.thumbnail.src}
-                        alt=""
-                        width={cert.thumbnail.width}
-                        height={cert.thumbnail.height}
-                        sizes="104px"
-                        loading="lazy"
-                        className="aspect-[4/3] h-auto w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
-                      />
-                      <span className="absolute inset-0 flex items-center justify-center bg-ink/0 text-bg opacity-0 transition group-hover:bg-ink/50 group-hover:opacity-100 group-focus-visible:bg-ink/50 group-focus-visible:opacity-100">
-                        <Maximize2 className="size-4" aria-hidden="true" />
-                      </span>
-                    </button>
-                    <div className="min-w-0">
-                      <h3 className="text-[15px] leading-snug font-semibold text-pretty sm:text-base">{cert.title}</h3>
-                      <p className="mt-0.5 text-sm text-ink-muted">
-                        {cert.issuer}
-                        {cert.via ? <span className="text-ink-subtle"> · {cert.via}</span> : null}
-                      </p>
-                      {cert.issued ? (
-                        <p className="mt-0.5 text-xs text-ink-subtle">
-                          <time dateTime={cert.issuedISO}>{cert.issued}</time>
-                        </p>
-                      ) : null}
-                    </div>
-                    <div className="col-span-2 flex flex-wrap gap-2 sm:col-span-1 sm:justify-end">
-                      <a
-                        href={cert.pdf}
-                        target="_blank"
-                        rel="noopener"
-                        className="inline-flex min-h-10 items-center gap-1.5 bg-ink px-3.5 text-xs font-medium text-bg hover:opacity-80"
-                      >
-                        <ExternalLink className="size-3.5" aria-hidden="true" /> View
-                        <span className="sr-only"> {cert.title}</span>
-                      </a>
-                      <a
-                        href={cert.pdf}
-                        download
-                        className="inline-flex min-h-10 items-center gap-1.5 border border-line-strong px-3.5 text-xs font-medium hover:border-ink"
-                      >
-                        <Download className="size-3.5" aria-hidden="true" /> Download
-                        <span className="sr-only"> {cert.title}</span>
-                      </a>
-                    </div>
-                  </li>
-                ))}
-            </ul>
+      {/* Horizontal shelf: scales to any number of certificates without growing the page. */}
+      <ul
+        ref={track}
+        onScroll={onScroll}
+        tabIndex={0}
+        aria-label="Certificates, scroll horizontally"
+        className="-mx-5 flex snap-x snap-mandatory scroll-px-5 gap-6 overflow-x-auto px-5 pb-4 [scrollbar-width:thin] sm:mx-0 sm:scroll-px-0 sm:px-0"
+      >
+        {certs.map((cert) => (
+          <li key={cert.pdf} className="relative w-[82%] shrink-0 snap-start sm:w-[calc((100%-1.5rem)/2)] lg:w-[calc((100%-3rem)/3)]">
+            <article className="group flex h-full flex-col">
+              <button
+                type="button"
+                onClick={() => open(cert)}
+                aria-label={`Preview certificate: ${cert.title}`}
+                className="relative flex aspect-[4/3] items-center justify-center overflow-hidden bg-band p-5"
+              >
+                <Image
+                  src={cert.thumbnail.src}
+                  alt=""
+                  width={cert.thumbnail.width}
+                  height={cert.thumbnail.height}
+                  sizes="(min-width: 1024px) 340px, (min-width: 640px) 45vw, 80vw"
+                  loading="lazy"
+                  className="max-h-full w-auto max-w-full object-contain shadow-[0_10px_30px_-14px_rgb(0_0_0/0.45)] transition-transform duration-500 group-hover:scale-[1.03]"
+                />
+                <span className="absolute right-3 bottom-3 inline-flex items-center gap-1.5 bg-ink px-2.5 py-1.5 text-[11px] font-medium text-bg opacity-0 transition-opacity group-hover:opacity-100 group-focus-within:opacity-100">
+                  <Maximize2 className="size-3.5" aria-hidden="true" /> Preview
+                </span>
+              </button>
+              <div className="flex flex-1 flex-col border-x border-b border-line-strong/60 p-5">
+                <p className="text-[11px] font-medium tracking-[0.18em] text-ink-subtle uppercase">
+                  {cert.issuer}
+                  {cert.issued ? (
+                    <>
+                      {" · "}
+                      <time dateTime={cert.issuedISO}>{cert.issued}</time>
+                    </>
+                  ) : null}
+                </p>
+                <h3 className="mt-2 font-display text-xl leading-snug text-pretty">{cert.title}</h3>
+                <div className="mt-auto flex gap-4 pt-5 text-sm font-medium">
+                  <a href={cert.pdf} target="_blank" rel="noopener" className="inline-flex min-h-10 items-center gap-1.5 underline-offset-4 hover:underline">
+                    <ExternalLink className="size-3.5" aria-hidden="true" /> View
+                    <span className="sr-only"> {cert.title}</span>
+                  </a>
+                  <a href={cert.pdf} download className="inline-flex min-h-10 items-center gap-1.5 text-ink-muted underline-offset-4 hover:text-ink hover:underline">
+                    <Download className="size-3.5" aria-hidden="true" /> Download
+                    <span className="sr-only"> {cert.title}</span>
+                  </a>
+                </div>
+              </div>
+            </article>
           </li>
         ))}
-      </ol>
-
-      {certs.length > INITIAL ? (
-        <button
-          type="button"
-          onClick={() => setExpanded((v) => !v)}
-          aria-expanded={expanded}
-          className="mt-8 inline-flex min-h-11 items-center gap-2 border border-ink px-5 text-sm font-medium hover:bg-ink hover:text-bg"
-        >
-          {expanded ? "Show fewer" : `Show all ${certs.length} certificates`}
-          <ChevronDown className={`size-4 transition-transform ${expanded ? "rotate-180" : ""}`} aria-hidden="true" />
-        </button>
-      ) : null}
+      </ul>
 
       <dialog
         ref={dialog}

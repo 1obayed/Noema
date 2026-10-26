@@ -105,7 +105,7 @@ export function Hero() {
             </div>
           </div>
         </div>
-        <figure className="mx-auto w-full max-w-md lg:absolute lg:inset-y-0 lg:right-0 lg:mx-0 lg:w-[38%] lg:max-w-[34rem]">
+        <figure className="mx-auto w-full max-w-md overflow-hidden lg:absolute lg:inset-y-0 lg:right-0 lg:mx-0 lg:w-[38%] lg:max-w-[34rem] lg:overflow-visible">
           <Image
             src={profile.portrait.src}
             alt={profile.portrait.alt}
@@ -113,7 +113,7 @@ export function Hero() {
             height={profile.portrait.height}
             priority
             sizes="(min-width: 1024px) 38vw, 448px"
-            className="aspect-[4/5] h-auto w-full object-cover object-top lg:aspect-auto lg:h-full"
+            className="aspect-[4/5] h-auto w-full translate-x-[8%] object-cover object-top lg:aspect-auto lg:h-full lg:translate-x-[10%]"
           />
         </figure>
       </div>
