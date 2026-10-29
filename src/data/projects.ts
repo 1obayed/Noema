@@ -33,5 +33,6 @@ export const projects: Project[] = [
       "Targets deployment on embedded vision hardware.",
     ],
     tags: ["Computer Vision", "Deep Learning", "Object Detection", "Embedded Vision"],
+    recognition: "Ideation 5.0",
   },
 ];

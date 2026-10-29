@@ -3,6 +3,7 @@ import { Footer } from "@/components/footer";
 import { RevealOnScroll } from "@/components/reveal";
 import { Hero } from "@/components/sections/hero";
 import { About } from "@/components/sections/about";
+import { QuoteBand } from "@/components/sections/quote";
 import { ExperienceSection } from "@/components/sections/experience";
 import { ProjectsSection } from "@/components/sections/projects";
 import { SkillsSection } from "@/components/sections/skills";
@@ -39,6 +40,7 @@ export default function Home() {
       <main id="main">
         <Hero />
         <About />
+        <QuoteBand />
         <EducationSection />
         <ExperienceSection />
         <ProjectsSection />
