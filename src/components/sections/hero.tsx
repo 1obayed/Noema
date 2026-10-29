@@ -102,7 +102,7 @@ export function Hero() {
                 <FileDown className="size-4" aria-hidden="true" /> Download résumé
               </ButtonLink>
             </div>
-            <blockquote className="mt-12 max-w-xl border-l-2 border-ink pl-5 font-display text-xl leading-snug text-ink-muted italic sm:text-2xl">
+            <blockquote className="mt-16 max-w-xl sm:mt-20 border-l-2 border-ink pl-5 font-display text-xl leading-snug text-ink-muted italic sm:text-2xl">
               “{profile.quote}”
             </blockquote>
           </div>
