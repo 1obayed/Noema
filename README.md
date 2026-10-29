@@ -66,3 +66,7 @@ src/data/           all site content
 src/lib/site.ts     site URL and navigation
 public/             résumé, certificates, thumbnails, portrait
 ```
+
+## Résumé PDF
+
+`public/resume/Md-Obayed-Reza-Hridoy-Resume.pdf` is built from `resume-source/resume.tex`. Edit the `.tex` file, run `pdflatex resume.tex` (twice, so the links resolve), and copy the PDF into `public/resume/`.

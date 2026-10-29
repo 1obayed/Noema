@@ -87,7 +87,7 @@ export function Hero() {
       {/* Grey band: headline and focus, with the portrait aligned to the content's right edge. */}
       <div className="bg-band">
         <div className="mx-auto grid w-full max-w-7xl gap-x-12 px-5 sm:px-8 lg:grid-cols-12">
-          <div className="py-12 sm:py-16 lg:col-span-7 lg:self-center lg:py-24">
+          <div className="py-12 sm:py-16 lg:col-span-7 lg:pt-16 lg:pb-20">
             <p className="font-display text-3xl leading-tight text-balance sm:text-[2.6rem]">{profile.headline}</p>
             <p className="mt-6 text-[13px] font-medium tracking-[0.06em] text-ink">{profile.identity.join("  ·  ")}</p>
             <p className="mt-2 text-[13px] tracking-[0.06em] text-ink-subtle">{profile.focusLine.join("  ·  ")}</p>
@@ -102,6 +102,9 @@ export function Hero() {
                 <FileDown className="size-4" aria-hidden="true" /> Download résumé
               </ButtonLink>
             </div>
+            <blockquote className="mt-12 max-w-xl border-l-2 border-ink pl-5 font-display text-xl leading-snug text-ink-muted italic sm:text-2xl">
+              “{profile.quote}”
+            </blockquote>
           </div>
           <figure className="mx-auto w-full max-w-md self-end lg:col-span-5 lg:mx-0 lg:max-w-none lg:pt-16">
             <Image

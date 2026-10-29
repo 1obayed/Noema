@@ -13,7 +13,7 @@ export const profile = {
   identity: ["Electrical & Electronic Engineering Student", "Undergraduate Researcher", "Tech Entrepreneur"],
   focusLine: ["Embedded Systems & Firmware", "Embedded AI & TinyML", "Deep Learning & Computer Vision"],
   headline: "Building intelligent systems, from circuits to code.",
-  /** The owner's own line, shown as a pull-quote after About. */
+  /** The owner's own line, shown under the hero buttons. */
   quote: "Nature’s imagination knows no bounds, and the resolution of ours is infinite.",
   location: "Dhaka, Bangladesh",
   email: "1obayedreza@gmail.com",
