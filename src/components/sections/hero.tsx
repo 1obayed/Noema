@@ -87,7 +87,7 @@ export function Hero() {
       {/* Grey band: headline and focus, with the portrait aligned to the content's right edge. */}
       <div className="bg-band">
         <div className="mx-auto grid w-full max-w-7xl gap-x-12 px-5 sm:px-8 lg:grid-cols-12">
-          <div className="py-12 sm:py-16 lg:col-span-7 lg:pt-16 lg:pb-20">
+          <div className="py-12 sm:py-16 lg:col-span-7 lg:self-center lg:pt-16 lg:pb-0">
             <p className="font-display text-3xl leading-tight text-balance sm:text-[2.6rem]">{profile.headline}</p>
             <p className="mt-6 text-[13px] font-medium tracking-[0.06em] text-ink">{profile.identity.join("  ·  ")}</p>
             <p className="mt-2 text-[13px] tracking-[0.06em] text-ink-subtle">{profile.focusLine.join("  ·  ")}</p>
