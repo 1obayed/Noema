@@ -19,7 +19,7 @@ export const experience: Experience[] = [
     link: { label: "LaSSET on Facebook", href: "https://www.facebook.com/braculasset/" },
     role: "Undergraduate Researcher",
     period: "2025 – 2026",
-    duration: "1+",
+    duration: "1.5+",
     location: "Dhaka, Bangladesh",
     kind: "Research",
     points: [

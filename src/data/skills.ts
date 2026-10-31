@@ -10,6 +10,7 @@ export const languages: RatedSkill[] = [
 
 export const skillGroups: SkillGroup[] = [
   { title: "AI & Computer Vision", items: ["Computer Vision", "PyTorch", "Deep Learning", "Convolutional Neural Networks", "Image/Object Detection"] },
+  { title: "Embedded AI", items: ["ONNX Model Conversion", "Model Deployment on Embedded Devices"] },
   { title: "Engineering Tools", items: ["MATLAB", "Simulink", "PSpice"] },
   { title: "Research", items: ["Data Analysis and Visualization", "Quantitative Research Methods", "Research Planning and Execution"] },
   { title: "Professional", items: ["Project Management", "Interdisciplinary Collaboration", "Strategic Planning"] },
