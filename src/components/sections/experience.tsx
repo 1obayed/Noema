@@ -1,3 +1,4 @@
+import { ExternalLink } from "lucide-react";
 import { Section } from "../section";
 import { experience } from "@/data/experience";
 
@@ -25,7 +26,23 @@ export function ExperienceSection() {
                 <p className="mt-1 text-[11px] font-medium tracking-[0.18em] text-ink-subtle uppercase">{job.kind}</p>
               </div>
               <div>
-                <h3 className="text-lg font-semibold tracking-tight sm:text-xl">{job.organization}</h3>
+                <h3 className="text-lg font-semibold tracking-tight sm:text-xl">
+                  {job.link ? (
+                    <a
+                      href={job.link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      title={job.link.label}
+                      className="underline decoration-line-strong decoration-1 underline-offset-4 hover:decoration-ink"
+                    >
+                      {job.organization}
+                      <ExternalLink className="ml-1.5 inline size-4 align-[-0.1em] text-ink-subtle" aria-hidden="true" />
+                      <span className="sr-only"> (opens {job.link.label})</span>
+                    </a>
+                  ) : (
+                    job.organization
+                  )}
+                </h3>
                 <p className="mt-0.5 font-medium">{job.role}</p>
                 {job.location ? <p className="mt-0.5 text-sm text-ink-subtle">{job.location}</p> : null}
                 <ul className="mt-4 max-w-2xl space-y-2 text-[15px] leading-relaxed text-ink-muted">

@@ -94,7 +94,7 @@ export function ProjectsSection() {
                     ))}
                   </ul>
                 ) : null}
-                {project.repoUrl || project.liveUrl ? (
+                {project.repoUrl || project.liveUrl || project.link ? (
                   <div className="mt-auto flex flex-wrap gap-2 pt-6">
                     {project.repoUrl ? (
                       <a
@@ -114,6 +114,16 @@ export function ProjectsSection() {
                         className="inline-flex min-h-10 items-center gap-2 bg-ink px-4 text-xs font-medium text-bg hover:opacity-80"
                       >
                         <ExternalLink className="size-4" aria-hidden="true" /> Live
+                      </a>
+                    ) : null}
+                    {project.link ? (
+                      <a
+                        href={project.link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex min-h-10 items-center gap-2 bg-ink px-4 text-xs font-medium text-bg hover:opacity-80"
+                      >
+                        <ExternalLink className="size-4" aria-hidden="true" /> {project.link.label}
                       </a>
                     ) : null}
                   </div>

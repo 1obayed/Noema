@@ -19,6 +19,7 @@ export const projects: Project[] = [
     ],
     tags: ["Systems Architecture", "Research", "Project Management"],
     recognition: "UIHP & Hult Prize — Grant-Awarded Project",
+    link: { label: "greensync.bd", href: "https://greensync.bd" },
   },
   {
     slug: "bracu-alter",
@@ -34,5 +35,6 @@ export const projects: Project[] = [
     ],
     tags: ["Computer Vision", "Deep Learning", "Object Detection", "Embedded Vision"],
     recognition: "Ideation 5.0",
+    link: { label: "BRACU Alter on Facebook", href: "https://www.facebook.com/p/BRACU-ALTER-61557795005542/" },
   },
 ];

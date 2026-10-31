@@ -3,6 +3,7 @@ import type { Experience } from "./types";
 export const experience: Experience[] = [
   {
     organization: "Tornetec",
+    link: { label: "tornetec.com", href: "https://tornetec.com/" },
     role: "Co-Founder, Head of Research & Management",
     period: "2022 – Present",
     duration: "3+",
@@ -15,6 +16,7 @@ export const experience: Experience[] = [
   },
   {
     organization: "Laboratory of Space System Engineering Technology (LaSSET), BRAC University",
+    link: { label: "LaSSET on Facebook", href: "https://www.facebook.com/braculasset/" },
     role: "Undergraduate Researcher",
     period: "2025 – 2026",
     duration: "1+",

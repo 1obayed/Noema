@@ -7,6 +7,8 @@ export type Experience = {
   /** Years in the role, shown large (e.g. "3+"). Counted from the years in period. */
   duration?: string;
   location?: string;
+  /** Organization's website or official page; the name links to it. */
+  link?: Link;
   kind: "Industry" | "Research" | "Venture";
   points: string[];
   tools?: string[];
@@ -26,6 +28,8 @@ export type Project = {
   image?: { src: string; alt: string; width: number; height: number };
   repoUrl?: string;
   liveUrl?: string;
+  /** Official website or page, shown as a labelled button. */
+  link?: Link;
 };
 
 export type Achievement = {
