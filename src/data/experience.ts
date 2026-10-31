@@ -29,6 +29,7 @@ export const experience: Experience[] = [
   },
   {
     organization: "Zyphrst",
+    link: { label: "Zyphrst on Rarible", href: "https://og.rarible.com/zyphrst" },
     role: "Founder & Manager",
     period: "2022 – 2024",
     duration: "2+",
