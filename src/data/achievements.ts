@@ -13,6 +13,7 @@ export const achievements: Achievement[] = [
     title: "Hult Prize — BRAC University",
     organization: "Hult Prize — BRAC University",
     year: "2025",
+    evidenceUrl: "/certifications/hult-prize-brac-university-2025-second-runner-up.pdf",
     kind: "Competition",
   },
   {

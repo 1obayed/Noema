@@ -18,6 +18,16 @@ export const certifications: Certification[] = [
     pages: 1,
   },
   {
+    title: "Hult Prize at BRAC University 2025–2026: 2nd Runner-Up",
+    issuer: "Hult Prize Foundation",
+    issued: "December 27, 2025",
+    issuedISO: "2025-12-27",
+    description: "Recognized as a member of the 2nd runner-up team.",
+    pdf: "/certifications/hult-prize-brac-university-2025-second-runner-up.pdf",
+    thumbnail: { src: "/certifications/thumbs/hult-prize-brac-university-2025-second-runner-up.webp", width: 900, height: 636 },
+    pages: 1,
+  },
+  {
     title: "Advancing Sustainable Development in Practice",
     issuer: "UNITAR",
     via: "United Nations Institute for Training and Research, with UNDP–UNEP Poverty-Environment Action",
