@@ -37,16 +37,8 @@ export function SkillsSection() {
         {skillAreas.map((area) => (
           <div key={area.title} data-reveal>
             <BarHeading>{area.title}</BarHeading>
-            <div className="flex items-center justify-between gap-4 border-b border-line-strong/60 pb-3">
-              <span className="text-[15px]">Overall</span>
-              <span className="flex shrink-0 items-center gap-3">
-                <StarRating value={area.rating} label={`${area.title} proficiency`} />
-                <span className="w-7 text-right text-xs text-ink-subtle" aria-hidden="true">
-                  {area.rating}/5
-                </span>
-              </span>
-            </div>
-            <ul className="mt-4 flex flex-wrap gap-2" aria-label={`${area.title} skills`}>
+            <RatedList skills={area.ratings} />
+            <ul className="mt-5 flex flex-wrap gap-2" aria-label={`${area.title} skills`}>
               {area.items.map((s) => (
                 <li key={s}>
                   <Tag>{s}</Tag>
@@ -67,7 +59,7 @@ export function SkillsSection() {
           <SkillWaves data={proficiencyOverview} />
         </div>
         <p className="mt-6 text-xs text-ink-subtle">
-          All ratings are self-assessed out of 5. The overview shows each area out of 100; tools and professional skills are averaged.
+          All ratings are self-assessed out of 5. The overview shows each area out of 100; areas with several ratings are averaged.
         </p>
       </div>
     </Section>

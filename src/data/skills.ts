@@ -1,8 +1,8 @@
 export type Rating = 1 | 2 | 3 | 4 | 5;
 export type RatedSkill = { name: string; rating: Rating };
 
-/** A skill area rated as a whole, with the specific skills it covers shown as tags. */
-export type SkillArea = { title: string; rating: Rating; items: string[] };
+/** A skill area with one or more rated lines, and the specific skills it covers shown as tags. */
+export type SkillArea = { title: string; ratings: RatedSkill[]; items: string[] };
 
 /** A group where each skill carries its own rating. */
 export type RatedGroup = { title: string; skills: RatedSkill[] };
@@ -27,18 +27,21 @@ export const engineeringTools: RatedGroup = {
 export const skillAreas: SkillArea[] = [
   {
     title: "AI & Computer Vision",
-    rating: 3,
+    ratings: [{ name: "Overall", rating: 3 }],
     items: ["Deep Learning", "CNNs", "Image / Object Detection", "Model Training & Fine-tuning", "PyTorch"],
   },
   {
-    title: "Embedded AI",
-    rating: 2,
+    title: "Embedded Systems & AI",
+    ratings: [
+      { name: "Embedded AI", rating: 2 },
+      { name: "Embedded Systems & Firmware", rating: 2 },
+    ],
     items: ["ONNX Model Conversion", "On-Device Model Deployment"],
   },
   {
     title: "Research",
-    rating: 3,
-    items: ["Research Planning & Execution", "Model Evaluation", "Data Analysis & Visualization", "Quantitative Methods"],
+    ratings: [{ name: "Overall", rating: 3 }],
+    items: ["Literature Review", "Research Planning & Execution", "Model Evaluation", "Data Analysis & Visualization", "Quantitative Methods"],
   },
 ];
 
@@ -51,13 +54,14 @@ export const professional: RatedGroup = {
   ],
 };
 
-const avg = (g: RatedGroup) => g.skills.reduce((s, k) => s + k.rating, 0) / g.skills.length;
+const avg = (skills: RatedSkill[]) => skills.reduce((s, k) => s + k.rating, 0) / skills.length;
+const score = (skills: RatedSkill[]) => Math.round(avg(skills) * 20);
 
 /** Overview shown as waves at the bottom of Skills: each area's rating out of 100. */
 export const proficiencyOverview: { label: string; value: number }[] = [
-  { label: "AI & CV", value: skillAreas[0].rating * 20 },
-  { label: "Embedded AI", value: skillAreas[1].rating * 20 },
-  { label: "Tools", value: Math.round(avg(engineeringTools) * 20) },
-  { label: "Research", value: skillAreas[2].rating * 20 },
-  { label: "Professional", value: Math.round(avg(professional) * 20) },
+  { label: "AI & CV", value: score(skillAreas[0].ratings) },
+  { label: "Embedded", value: score(skillAreas[1].ratings) },
+  { label: "Tools", value: score(engineeringTools.skills) },
+  { label: "Research", value: score(skillAreas[2].ratings) },
+  { label: "Professional", value: score(professional.skills) },
 ];
