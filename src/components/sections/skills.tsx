@@ -1,6 +1,26 @@
 import { BarHeading, Section } from "../section";
+import { Tag } from "../button";
+import { SkillWaves } from "../skill-waves";
 import { StarRating } from "../star-rating";
-import { languages, skillGroups } from "@/data/skills";
+import { engineeringTools, languages, professional, proficiencyOverview, skillAreas, type RatedSkill } from "@/data/skills";
+
+function RatedList({ skills }: { skills: RatedSkill[] }) {
+  return (
+    <ul>
+      {skills.map((s) => (
+        <li key={s.name} className="flex items-center justify-between gap-4 border-b border-line-strong/60 py-3">
+          <span className="text-[15px]">{s.name}</span>
+          <span className="flex shrink-0 items-center gap-3">
+            <StarRating value={s.rating} label={`${s.name} proficiency`} />
+            <span className="w-7 text-right text-xs text-ink-subtle" aria-hidden="true">
+              {s.rating}/5
+            </span>
+          </span>
+        </li>
+      ))}
+    </ul>
+  );
+}
 
 export function SkillsSection() {
   return (
@@ -8,34 +28,47 @@ export function SkillsSection() {
       <div className="grid gap-x-16 gap-y-14 lg:grid-cols-2">
         <div data-reveal>
           <BarHeading>Programming languages</BarHeading>
-          <ul className="max-w-md">
-            {languages.map((lang) => (
-              <li key={lang.name} className="flex items-center justify-between gap-4 border-b border-line-strong/60 py-3">
-                <span className="text-[15px]">{lang.name}</span>
-                <span className="flex items-center gap-3">
-                  <StarRating value={lang.rating} label={`${lang.name} proficiency`} />
-                  <span className="w-7 text-right text-xs text-ink-subtle" aria-hidden="true">
-                    {lang.rating}/5
-                  </span>
-                </span>
-              </li>
-            ))}
-          </ul>
-          <p className="mt-3 text-xs text-ink-subtle">Self-assessed, out of 5.</p>
+          <RatedList skills={languages} />
         </div>
-        {skillGroups.map((group) => (
-          <div key={group.title} data-reveal>
-            <BarHeading>{group.title}</BarHeading>
-            <ul className="max-w-md">
-              {group.items.map((s) => (
-                <li key={s} className="flex items-center gap-3 border-b border-line-strong/60 py-3 text-[15px]">
-                  <span className="size-1.5 shrink-0 bg-ink" aria-hidden="true" />
-                  {s}
+        <div data-reveal>
+          <BarHeading>{engineeringTools.title}</BarHeading>
+          <RatedList skills={engineeringTools.skills} />
+        </div>
+        {skillAreas.map((area) => (
+          <div key={area.title} data-reveal>
+            <BarHeading>{area.title}</BarHeading>
+            <div className="flex items-center justify-between gap-4 border-b border-line-strong/60 pb-3">
+              <span className="text-[15px]">Overall</span>
+              <span className="flex shrink-0 items-center gap-3">
+                <StarRating value={area.rating} label={`${area.title} proficiency`} />
+                <span className="w-7 text-right text-xs text-ink-subtle" aria-hidden="true">
+                  {area.rating}/5
+                </span>
+              </span>
+            </div>
+            <ul className="mt-4 flex flex-wrap gap-2" aria-label={`${area.title} skills`}>
+              {area.items.map((s) => (
+                <li key={s}>
+                  <Tag>{s}</Tag>
                 </li>
               ))}
             </ul>
           </div>
         ))}
+        <div data-reveal>
+          <BarHeading>{professional.title}</BarHeading>
+          <RatedList skills={professional.skills} />
+        </div>
+      </div>
+
+      <div className="mt-16 border-t border-line-strong/60 pt-12" data-reveal>
+        <BarHeading>Proficiency overview</BarHeading>
+        <div className="mx-auto max-w-3xl">
+          <SkillWaves data={proficiencyOverview} />
+        </div>
+        <p className="mt-6 text-xs text-ink-subtle">
+          All ratings are self-assessed out of 5. The overview shows each area out of 100; tools and professional skills are averaged.
+        </p>
       </div>
     </Section>
   );
